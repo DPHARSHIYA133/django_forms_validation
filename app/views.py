@@ -29,7 +29,7 @@ def insertWebpage(request):
             name=WFDO.cleaned_data['name']
             url=WFDO.cleaned_data['url']
             email=WFDO.cleaned_data['email']
-            TO=Topic.objects.get_or_create(topic_name=topic_name)
+            TO=Topic.objects.get(topic_name=topic_name)
             WTO=Webpage.objects.get_or_create(topic_name=TO,name=name,url=url,email=email)
             if WTO[1]:
                     return HttpResponse(f'{name} is created')

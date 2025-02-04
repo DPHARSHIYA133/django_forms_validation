@@ -11,6 +11,13 @@ class WebpageForm(forms.Form):
     name=forms.CharField()
     url=forms.URLField()
     email=forms.EmailField() 
+    reemail=forms.EmailField()
+    def clean(self):
+        e=self.cleaned_data['email']
+        re=self.cleaned_data['reemail']
+        if e!=re:
+            raise forms.ValidationError('emails not matched!')
+
 class AccessrecordForm(forms.Form):
     name=forms.ModelChoiceField(queryset=Webpage.objects.all())
     date=forms.DateField()
